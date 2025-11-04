@@ -1,7 +1,6 @@
 package phan1;
 
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 public class phan1 {
     public static void main(String[] args) {
@@ -14,6 +13,22 @@ public class phan1 {
             arr[i] = sc.nextInt();
         }
         System.out.println("Chon chuong trinh: ");
+        System.out.println("\n===== MENU =====");
+        System.out.println("1. Tính tổng mảng");
+        System.out.println("2. Tìm giá trị lớn nhất");
+        System.out.println("3. Tìm giá trị nhỏ nhất");
+        System.out.println("4. Đếm số chẵn / lẻ");
+        System.out.println("5. Đảo ngược mảng");
+        System.out.println("6. Kiểm tra phần tử có tồn tại");
+        System.out.println("7. Tính giá trị trung bình");
+        System.out.println("8. Đếm số lần xuất hiện");
+        System.out.println("9. Nối hai mảng");
+        System.out.println("10. Sắp xếp tăng dần");
+        System.out.println("11. Xóa phần tử khỏi mảng");
+        System.out.println("12. Thêm phần tử vào mảng");
+        System.out.println("13. Tìm số nguyên tố trong mảng");
+        System.out.print("Chon chuong trinh: ");
+
         int choice = sc.nextInt();
         switch (choice) {
             case 1:
@@ -66,6 +81,24 @@ public class phan1 {
                 break;
             case 10:
                 sortAscending(arr);
+                break;
+            case 11:
+                System.out.println("Nhap so can xóa: ");
+                int val = sc.nextInt();
+                removeElement(arr, val);
+                break;
+            case 12:
+                System.out.println("Giá trị phần tử thêm vào: ");
+                int value = sc.nextInt();
+                System.out.println("Vị trí thêm vào: ");
+                int pos = sc.nextInt();
+                insertElement(arr, pos, value);
+                break;
+            case 13:
+                printPrimeNumbers(arr);
+                break;
+            case 14:
+                mostFrequentElement(arr);
                 break;
             default:
                 System.out.println("Chon sai chuong trinh");
@@ -174,5 +207,86 @@ public class phan1 {
     public static void sortAscending(int[] arr) {
         Arrays.sort(arr);
         System.out.println("Mảng sau khi sắp xếp: " + Arrays.toString(arr));
+    }
+
+    public static void removeElement(int[] arr, int val) {
+        int count = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == val) {
+                count++;
+            }
+        }
+        if (count == 0) {
+            System.out.println(val + " không tồn tại");
+        }
+        int[] newArr = new int[arr.length - count];
+        int index = 0;
+        for (int i : arr) {
+            if (i != val) {
+                newArr[index] = i;
+                index++;
+            }
+        }
+        System.out.println("Mang sau khi xóa phần tử " + val + " : " + Arrays.toString(newArr));
+    }
+
+    public static void insertElement(int[] arr, int pos, int value) {
+        int[] newArr = new int[arr.length + 1];
+        for (int i = 0; i < pos; i++) {
+            newArr[i] = arr[i];
+        }
+        newArr[pos] = value;
+        for (int i = pos; i < arr.length; i++) {
+            newArr[i + 1] = arr[i];
+
+        }
+        System.out.println("Mảng sau khi chèn " + value + " tại vị trí " + pos + ":");
+        System.out.println(Arrays.toString(newArr));
+
+    }
+
+    public static void printPrimeNumbers(int[] arr) {
+        boolean found = false;
+        for (int i = 0; i < arr.length; i++) {
+            if (isPrime(arr[i]) == 2) {
+                System.out.print(arr[i] + " ");
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("Khong co so nguyen to nao");
+        }
+        System.out.println();
+    }
+
+    public static int isPrime(int n) {
+        int count = 0;
+        for (int i = 1; i <= n; i++) {
+            if (n % i == 0) {
+                count++;
+            }
+        }
+        return count;
+
+    }
+
+    public static void mostFrequentElement(int[] arr) {
+        int max_count = 0;
+        int most_freq = arr[0];
+        for (int i = 0; i < arr.length; i++) {
+            int count = 0;
+            for (int j = 0; j < arr.length; j++) {
+                if (arr[i] == arr[j]) {
+                    count++;
+                }
+            }
+
+            if (count > max_count) {
+                max_count = count;
+                most_freq = arr[i];
+            }
+        }
+
+        System.out.println("Phần tử xuất hiện nhiều nhất là: " + most_freq + " (" + max_count + " lần)");
     }
 }
