@@ -33,6 +33,7 @@ public class phan1 {
         System.out.println("17.Kiểm tra mảng có đối xứng hay không (Palindrome Array)");
         System.out.println("18.Gộp và sắp xếp hai mảng rồi loại bỏ phần tử trùng");
         System.out.println("19.Tìm dãy con có tổng lớn nhất (Maximum Subarray Sum – Kadane’s Algorithm)");
+        System.out.println("20.Ma trận và hàm xử lý (2D array)");
         System.out.print("Chon chuong trinh: ");
 
         int choice = sc.nextInt();
