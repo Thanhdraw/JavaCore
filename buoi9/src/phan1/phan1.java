@@ -27,6 +27,12 @@ public class phan1 {
         System.out.println("11. Xóa phần tử khỏi mảng");
         System.out.println("12. Thêm phần tử vào mảng");
         System.out.println("13. Tìm số nguyên tố trong mảng");
+        System.out.println("14. Tìm số xuất hiện nhiều trong mảng");
+        System.out.println("15. Tách mảng chẳng và mảng lẻ");
+        System.out.println("16.Xoay mảng sang phải k lần");
+        System.out.println("17.Kiểm tra mảng có đối xứng hay không (Palindrome Array)");
+        System.out.println("18.Gộp và sắp xếp hai mảng rồi loại bỏ phần tử trùng");
+        System.out.println("19.Tìm dãy con có tổng lớn nhất (Maximum Subarray Sum – Kadane’s Algorithm)");
         System.out.print("Chon chuong trinh: ");
 
         int choice = sc.nextInt();
@@ -99,6 +105,48 @@ public class phan1 {
                 break;
             case 14:
                 mostFrequentElement(arr);
+                break;
+            case 15:
+                splitEvenOdd(arr);
+                break;
+            case 16:
+                System.out.println("Nhap số k: ");
+                int k = sc.nextInt();
+                rotateRight(arr, k);
+                break;
+            case 17:
+                System.out.println(isSymmetric(arr));
+                break;
+            case 18:
+                int[] b = new int[n];
+                for (int i = 0; i < n; i++) {
+                    System.out.println("Nhap cac phan tu " + (i + 1) + ": ");
+                    b[i] = sc.nextInt();
+                }
+                int[] merged = mergeUnique(arr, b);
+                System.out.println("Mảng sau khi gộp và loại trùng: " + Arrays.toString(merged));
+                break;
+            case 19:
+                int maxSum = maxSubArraySum(arr);
+                System.out.println("Tổng lớn nhất của dãy con liên tiếp: " + maxSum);
+                break;
+            case 20:
+                System.out.print("Nhập số hàng: ");
+                int rows = sc.nextInt();
+                System.out.print("Nhập số cột: ");
+                int cols = sc.nextInt();
+
+                int[][] matrix = new int[rows][cols];
+
+                System.out.println("Nhập các phần tử ma trận:");
+                for (int i = 0; i < rows; i++) {
+                    for (int j = 0; j < cols; j++) {
+                        matrix[i][j] = sc.nextInt();
+                    }
+                }
+                System.out.println("Tổng toàn ma trận: " + sumMatrix(matrix));
+                System.out.println("Tổng đường chéo chính: " + sumMainDiagonal(matrix));
+                System.out.println("Phần tử lớn nhất trong ma trận: " + findMaxInMatrix(matrix));
                 break;
             default:
                 System.out.println("Chon sai chuong trinh");
@@ -289,4 +337,136 @@ public class phan1 {
 
         System.out.println("Phần tử xuất hiện nhiều nhất là: " + most_freq + " (" + max_count + " lần)");
     }
+
+    public static void splitEvenOdd(int[] arr) {
+        int count_even = 0;
+        int count_odd = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] % 2 == 0) {
+                count_even++;
+            } else {
+                count_odd++;
+            }
+        }
+        int[] arr_even = new int[count_even];
+        int[] arr_odd = new int[count_odd];
+        int index_even = 0;
+        int index_odd = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] % 2 == 0) {
+                arr_even[index_even] = arr[i];
+                index_even++;
+            } else {
+                arr_odd[index_odd] = arr[i];
+                index_odd++;
+            }
+        }
+        System.out.println(Arrays.toString(arr_even));
+        System.out.println(Arrays.toString(arr_odd));
+
+    }
+
+    public static void rotateRight(int[] arr, int k) {
+        int n = arr.length;
+        if (n == 0) return;
+        k = k % n;
+
+        int[] temp = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            temp[(i + k) % n] = arr[i];
+        }
+
+        for (int i = 0; i < n; i++) {
+            arr[i] = temp[i];
+        }
+        System.out.println(Arrays.toString(arr));
+    }
+
+    public static boolean isSymmetric(int[] arr) {
+        int n = arr.length;
+        for (int i = 0; i < n / 2; i++) {
+            if (arr[i] != arr[n - 1 - i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static int[] mergeUnique(int[] a, int[] b) {
+        int n = a.length + b.length;
+        int[] temp = new int[n];
+
+
+        System.arraycopy(a, 0, temp, 0, a.length);
+        System.arraycopy(b, 0, temp, a.length, b.length);
+
+        // Sắp xếp
+        Arrays.sort(temp);
+
+        // Loại trùng
+        int count = 1;
+        for (int i = 1; i < n; i++) {
+            if (temp[i] != temp[i - 1]) count++;
+        }
+
+        int[] result = new int[count];
+        result[0] = temp[0];
+        int index = 1;
+        for (int i = 1; i < n; i++) {
+            if (temp[i] != temp[i - 1]) {
+                result[index++] = temp[i];
+            }
+        }
+
+        return result;
+    }
+
+    public static int maxSubArraySum(int[] arr) {
+        int maxSum = arr[0];
+        int currentSum = arr[0];
+
+        for (int i = 1; i < arr.length; i++) {
+            currentSum = Math.max(arr[i], currentSum + arr[i]);
+            maxSum = Math.max(maxSum, currentSum);
+        }
+
+        return maxSum;
+    }
+
+    // ---------------- Hàm tính tổng toàn ma trận ----------------
+    public static int sumMatrix(int[][] m) {
+        int sum = 0;
+        for (int i = 0; i < m.length; i++) {
+            for (int j = 0; j < m[i].length; j++) {
+                sum += m[i][j];
+            }
+        }
+        return sum;
+    }
+
+    // ---------------- Hàm tính tổng đường chéo chính ----------------
+    public static int sumMainDiagonal(int[][] m) {
+        int sum = 0;
+        int n = Math.min(m.length, m[0].length); // Tránh ma trận không vuông
+        for (int i = 0; i < n; i++) {
+            sum += m[i][i];
+        }
+        return sum;
+    }
+
+    // ---------------- Hàm tìm phần tử lớn nhất trong ma trận ----------------
+    public static int findMaxInMatrix(int[][] m) {
+        int max = m[0][0];
+        for (int i = 0; i < m.length; i++) {
+            for (int j = 0; j < m[i].length; j++) {
+                if (m[i][j] > max) {
+                    max = m[i][j];
+                }
+            }
+        }
+        return max;
+    }
+
+
 }
