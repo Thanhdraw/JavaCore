@@ -6,24 +6,39 @@ public class bai2 {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Nhap số sinh viên: ");
-        int n = sc.nextInt();
-        Student[] students = new Student[n];
-        for (int i = 0; i < n; i++) {
-            System.out.println("Nhập sinh viên thứ " + (i + 1) + " : ");
+        Student[] students = null;
+        int n = 0;
+
+        System.out.println("Bạn muốn nhập dữ liệu hay dùng dữ liệu mẫu?");
+        System.out.println("1. Nhập thủ công");
+        System.out.println("2. Tạo dữ liệu giả");
+        System.out.print("Chọn: ");
+        int chon = sc.nextInt();
+        sc.nextLine();
+        if (chon == 1) {
+            System.out.print("Nhập số sinh viên: ");
+            n = sc.nextInt();
             sc.nextLine();
-            System.out.println("Mã sinh vien: ");
-            String id = sc.nextLine();
-            System.out.println("Tên sinh viên: ");
-            String name = sc.nextLine();
-            System.out.println("Nhập điểm Toán: ");
-            double mathScore = sc.nextDouble();
-            System.out.println("Nhập điểm Lý: ");
-            double mathPhysics = sc.nextDouble();
-            System.out.println("Nhập điểm Hóa: ");
-            double mathChemistry = sc.nextDouble();
-            sc.nextLine();
-            students[i] = new Student(id, name, mathScore, mathPhysics, mathChemistry);
+
+            students = new Student[n];
+            for (int i = 0; i < n; i++) {
+                System.out.println("\nNhập sinh viên thứ " + (i + 1) + ": ");
+                System.out.print("Mã sinh viên: ");
+                String id = sc.nextLine();
+                System.out.print("Tên sinh viên: ");
+                String name = sc.nextLine();
+                System.out.print("Nhập điểm Toán: ");
+                double math = sc.nextDouble();
+                System.out.print("Nhập điểm Lý: ");
+                double physics = sc.nextDouble();
+                System.out.print("Nhập điểm Hóa: ");
+                double chemistry = sc.nextDouble();
+                sc.nextLine();
+                students[i] = new Student(id, name, math, physics, chemistry);
+            }
+        } else {
+            students = taoDuLieuGia();
+            n = students.length;
         }
         System.out.println("Chọn chương trình: ");
         System.out.println("1.In danh sách sinh viên");
@@ -125,4 +140,17 @@ public class bai2 {
 
         sc.close();
     }
+
+    public static Student[] taoDuLieuGia() {
+        Student[] students = {
+                new Student("SV001", "Nguyen Van A", 8.5, 7.5, 9.0),
+                new Student("SV002", "Le Thi B", 5.0, 6.0, 5.5),
+                new Student("SV003", "Tran Van C", 9.0, 8.8, 9.2),
+                new Student("SV004", "Pham Thi D", 4.0, 5.0, 4.5),
+                new Student("SV005", "Do Van E", 7.0, 6.5, 7.5)
+        };
+        System.out.println("✅ Đã tạo dữ liệu mẫu thành công (" + students.length + " sinh viên)");
+        return students;
+    }
+
 }
