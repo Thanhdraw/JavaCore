@@ -10,6 +10,8 @@ public class Main {
 
     public static void main(String[] args) {
         danhsachGiangVien.add(new GiangVien("Thầy Minh", 40, "Nam", 20000000));
+        TruongHoc truongHoc = new TruongHoc("Đại Học FPT", "DH123", 200000000);
+
         while (true) {
             System.out.println("\n===== MENU =====");
             System.out.println("1. Thêm sinh viên mới");
