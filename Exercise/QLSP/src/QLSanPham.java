@@ -35,4 +35,17 @@ public class QLSanPham {
         }
         return null;
     }
+
+    public boolean xoaSanPham(String tenSP) {
+        if (sanPhams != null) {
+            for (int i = 0; i < sanPhams.size(); i++) {
+                if (sanPhams.get(i).getTenSP().equalsIgnoreCase(tenSP)) {
+                    sanPhams.remove(i);
+                    return true;
+                }
+            }
+        }
+        return false;
+
+    }
 }

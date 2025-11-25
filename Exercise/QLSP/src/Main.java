@@ -32,6 +32,10 @@ public class Main {
                     } else
                         System.out.println("Danh sach trống");
                     break;
+                case 4:
+                    System.out.println("Nhap mã sp cần xóa: ");
+                    String maSp = sc.nextLine();
+
                 case 0:
                     System.out.println("Thoát chương trình");
                     return;
