@@ -65,6 +65,10 @@ public class Main {
         sc.nextLine();
         System.out.println("Nhập mã sách: ");
         String ma = sc.nextLine();
+        if (timMaSach(ma) != null) {
+            System.out.println("Mã sách đã tổn tại");
+            return;
+        }
         System.out.println("Nhập tên sách: ");
         String ten = sc.nextLine();
         System.out.println("Nhap tác giả: ");
@@ -77,6 +81,10 @@ public class Main {
     }
 
     public static void inDanhSach() {
+        if (list.isEmpty()) {
+            System.out.println("Danh sách trống ");
+            return;
+        }
         for (int i = 0; i < list.size(); i++) {
             System.out.println(list.get(i).toString());
         }
@@ -96,7 +104,7 @@ public class Main {
         System.out.println("Nhap ma sach can xóa: ");
         String maSach = sc.nextLine();
         for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getMaSach().toUpperCase().equalsIgnoreCase(maSach)) {
+            if (list.get(i).getMaSach().equalsIgnoreCase(maSach)) {
                 list.remove(i);
                 return true;
             }
@@ -106,10 +114,6 @@ public class Main {
     }
 
     public static int diemSach() {
-        int count = 0;
-        for (Sach sach : list) {
-            count++;
-        }
-        return count;
+        return list.size();
     }
 }
