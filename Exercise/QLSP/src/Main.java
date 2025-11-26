@@ -13,6 +13,8 @@ public class Main {
             System.out.println("1.Nhập thong tin sản phẩm: ");
             System.out.println("2.In danh sách sản phẩm");
             System.out.println("3.Nhap mã san phẩm cần tìm");
+            System.out.println("4.Xóa sản phẩm ");
+            System.out.println("4.Tổng giá trị kho hàng");
             choice = sc.nextInt();
 
             switch (choice) {
@@ -33,15 +35,25 @@ public class Main {
                         System.out.println("Danh sach trống");
                     break;
                 case 4:
+                    sc.nextLine();
                     System.out.println("Nhap mã sp cần xóa: ");
                     String maSp = sc.nextLine();
-
+                    if (qlSanPham.xoaSanPham(maSp)) {
+                        System.out.println("Xóa thành công");
+                    } else {
+                        System.out.println("Xóa thất bại");
+                    }
+                    break;
+                case 5:
+                    System.out.println("Tổng giá trị kho hàng: " + qlSanPham.tongGiatri());
+                    break;
+                case 6:
+                    System.out.println("Điếm so ");
                 case 0:
                     System.out.println("Thoát chương trình");
                     return;
                 default:
                     System.out.println("Lựa chọn không hợp lệ!");
-
 
             }
 

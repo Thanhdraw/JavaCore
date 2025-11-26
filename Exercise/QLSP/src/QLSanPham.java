@@ -36,16 +36,23 @@ public class QLSanPham {
         return null;
     }
 
-    public boolean xoaSanPham(String tenSP) {
-        if (sanPhams != null) {
-            for (int i = 0; i < sanPhams.size(); i++) {
-                if (sanPhams.get(i).getTenSP().equalsIgnoreCase(tenSP)) {
-                    sanPhams.remove(i);
-                    return true;
-                }
+    public boolean xoaSanPham(String maSP) {
+        for (int i = 0; i < sanPhams.size(); i++) {
+            if (sanPhams.get(i).getMaSP().equalsIgnoreCase(maSP)) {
+                sanPhams.remove(i);
+                return true;
             }
         }
         return false;
-
+    }
+    public double tongGiatri(){
+        double sum = 0;
+        for (SanPham sp : sanPhams) {
+            sum += sp.getGia() *sp.getSoLuong();
+        }
+        return sum;
+    }
+    public int soSanPham(){
+        return sanPhams.size();
     }
 }
