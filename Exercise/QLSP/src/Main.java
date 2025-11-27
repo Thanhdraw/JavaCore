@@ -7,6 +7,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         QLSanPham qlSanPham = new QLSanPham();
+        qlSanPham.listSanPham();
         int choice;
         do {
 
@@ -14,7 +15,9 @@ public class Main {
             System.out.println("2.In danh sách sản phẩm");
             System.out.println("3.Nhap mã san phẩm cần tìm");
             System.out.println("4.Xóa sản phẩm ");
-            System.out.println("4.Tổng giá trị kho hàng");
+            System.out.println("5.Tổng giá trị kho hàng");
+            System.out.println("6.Điếm số lượng sản phẩm");
+            System.out.print("Chọn chương trình: ");
             choice = sc.nextInt();
 
             switch (choice) {
@@ -48,7 +51,8 @@ public class Main {
                     System.out.println("Tổng giá trị kho hàng: " + qlSanPham.tongGiatri());
                     break;
                 case 6:
-                    System.out.println("Điếm so ");
+                    System.out.println("Điếm số lượng: " + qlSanPham.soSanPham());
+                    break;
                 case 0:
                     System.out.println("Thoát chương trình");
                     return;
@@ -56,8 +60,6 @@ public class Main {
                     System.out.println("Lựa chọn không hợp lệ!");
 
             }
-
-
         } while (choice != 0);
     }
 }

@@ -45,14 +45,24 @@ public class QLSanPham {
         }
         return false;
     }
-    public double tongGiatri(){
+
+    public double tongGiatri() {
         double sum = 0;
         for (SanPham sp : sanPhams) {
-            sum += sp.getGia() *sp.getSoLuong();
+            sum += sp.getGia() * sp.getSoLuong();
         }
         return sum;
     }
-    public int soSanPham(){
+
+    public int soSanPham() {
         return sanPhams.size();
+    }
+
+    public void listSanPham() {
+        sanPhams.add(new SanPham("ms001", "iPhone 15 ProMax", 30000, 20));
+        sanPhams.add(new SanPham("ms002", "iPhone 14 ProMax", 30000, 20));
+        sanPhams.add(new SanPham("ms003", "iPhone 13 ProMax", 30000, 20));
+        sanPhams.add(new SanPham("ms004", "iPhone 12 ProMax", 30000, 20));
+        sanPhams.add(new SanPham("ms005", "iPhone 11 ProMax", 30000, 20));
     }
 }
