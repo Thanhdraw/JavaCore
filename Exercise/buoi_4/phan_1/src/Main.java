@@ -68,7 +68,7 @@ public class Main {
             System.out.println("xuất " + (i) + ": " + arr[i]);
         }
     }
-    public static void cachDocSoNguyenLonNhat() {
+    public static void cachDocSoNguyen() {
 
     }
 }
