@@ -56,6 +56,6 @@ public class NhanVien {
     @Override
     public String toString() {
         return "Mã nhân viên: " + this.maNV + " | Tên nhân viên: " + this.tenNV +
-                " | tuổi: " + this.tuoi + "| Lương cơ bản: " + this.luongCB + " | Phòng ban: " + this.phongBan;
+                " | tuổi: " + this.tuoi + "| Lương cơ bản: " + (long) this.luongCB + " | Phòng ban: " + this.phongBan;
     }
 }

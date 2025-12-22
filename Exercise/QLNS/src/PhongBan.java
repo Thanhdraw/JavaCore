@@ -34,7 +34,13 @@ public class PhongBan {
     public void themNhanVien(NhanVien nhanVien) {
         this.danhsachNhanVien.add(nhanVien);
     }
+
     public int demSoLuong() {
         return this.danhsachNhanVien.size();
+    }
+
+    @Override
+    public String toString() {
+        return phongBan + " (He so: " + heSoLuong + ", So NV: " + danhsachNhanVien.size() + ")";
     }
 }
